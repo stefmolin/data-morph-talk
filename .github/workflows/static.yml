@@ -38,10 +38,7 @@ jobs:
         with:
           # Upload appropriate files
           path: |
-            ./media/**/*.png
-            ./media/**/*.pdf
-            ./media/**/*.svg
-            ./index.html
+            data-morph-talk/index.html
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
