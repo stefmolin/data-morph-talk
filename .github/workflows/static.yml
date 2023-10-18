@@ -34,36 +34,36 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           # Upload appropriate files
           path: |
-            ./media/fitting_shapes.png
-            ./media/anscombe.png
-            ./media/snippets/data_morph_code_intro.svg
-            ./media/snippets/data_morph_install.svg
-            ./media/snippets/data_morph_morph_step.svg
-            ./media/snippets/data_morph_generate_shape.svg
-            ./media/snippets/data_morph_load_dataset.svg
-            ./media/avoiding_local_optima.gif
-            ./media/available_shapes.png
-            ./media/maximum_movement_over_time.png
-            ./media/bounds.png
-            ./media/stats.png
-            ./media/uml/shapes_uml.svg
-            ./media/scale.png
-            ./media/with_marginals.png
-            ./media/dino_to_circle.gif
-            ./media/available_datasets.png
-            ./media/datasaurus.png
-            ./media/Python_to_heart_forward_only.gif
-            ./media/stats.gif
-            ./media/Python_to_heart.gif
-            ./media/example_datasets.png
-            ./media/moments.gif
-            ./media/simulated_annealing.gif
-            ./media/temperature_over_time.png
-            ./media/bald_spots.png
+            ./media/fitting_shapes.png \
+            ./media/anscombe.png \
+            ./media/snippets/data_morph_code_intro.svg \
+            ./media/snippets/data_morph_install.svg \
+            ./media/snippets/data_morph_morph_step.svg \
+            ./media/snippets/data_morph_generate_shape.svg \
+            ./media/snippets/data_morph_load_dataset.svg \
+            ./media/avoiding_local_optima.gif \
+            ./media/available_shapes.png \
+            ./media/maximum_movement_over_time.png \
+            ./media/bounds.png \
+            ./media/stats.png \
+            ./media/uml/shapes_uml.svg \
+            ./media/scale.png \
+            ./media/with_marginals.png \
+            ./media/dino_to_circle.gif \
+            ./media/available_datasets.png \
+            ./media/datasaurus.png \
+            ./media/Python_to_heart_forward_only.gif \
+            ./media/stats.gif \
+            ./media/Python_to_heart.gif \
+            ./media/example_datasets.png \
+            ./media/moments.gif \
+            ./media/simulated_annealing.gif \
+            ./media/temperature_over_time.png \
+            ./media/bald_spots.png \
             ./index.html
       - name: Deploy to GitHub Pages
         id: deployment
