@@ -489,7 +489,7 @@ def compile_slides(title):
             <img src="https://img.shields.io/badge/view-repo-black?logo=github"
                 alt="repo" style="max-width: 100%; margin: 20px 0 0 0;">
         </a>
-        <a href="https://stefaniemolin/data-morph/stable/index.html"
+        <a href="https://stefaniemolin.com/data-morph/stable/index.html"
             style="z-index: 1;" target="_blank" rel="noopener noreferrer">
             <img src="https://img.shields.io/badge/view-docs-orange?logo=github"
                 alt="docs" style="max-width: 100%; margin: 20px 0 0 0;">
