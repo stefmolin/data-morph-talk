@@ -5,11 +5,82 @@
 <meta content="chrome=1" http-equiv="X-UA-Compatible"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<title>Data Morph: A Cautionary Tale of Summary Statistics &ndash; Stefanie Molin</title>
+<title>Data Morph: A Cautionary Tale of Summary Statistics | Stefanie Molin</title>
+<!-- Google tag (gtag.js) -->
+<script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-25389D1SR4"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+    dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-25389D1SR4");
+</script>
+
+<meta name="theme-color" content="#000" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@StefanieMolin" />
+<meta name="twitter:creator" content="@StefanieMolin" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Stefanie Molin" />
+<meta name="author" content="Stefanie Molin" />
+<meta name="referrer" content="origin" />
+<meta
+    name="keywords"
+    content="technology, workshop, data visualization, Python, data science, slides" />
+<meta
+    property="og:url"
+    content="https://stefaniemolin.com/data-morph-talk/" />
+<meta name="robots" content="index,follow" />
+<meta
+    name="description"
+    content="Relying solely on simple summary statistics like the mean, median, or standard deviation is not enough to describe complex data. Come and see why this is the case and learn what it takes to translate research into an open-source library." />
+<meta
+property="og:title"
+content="Data Morph: A Cautionary Tale of Summary Statistics slides | Stefanie Molin" />
+<meta
+property="og:description"
+content="Relying solely on simple summary statistics like the mean, median, or standard deviation is not enough to describe complex data. Come and see why this is the case and learn what it takes to translate research into an open-source library." />
+<meta
+    property="og:image"
+    content="https://stefaniemolin.com/assets/articles/data-science/introducing-data-morph/panda-to-star.gif" />
+<meta
+    property="og:image:alt"
+    content="Data Morph: A Cautionary Tale of Summary Statistics slides" />
+<meta property="og:image:width" content="774" />
+<meta property="og:image:height" content="379" />
+
+<link rel="manifest" href="/favicon/site.webmanifest" />
 <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script type="module">
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/favicon/apple-touch-icon.png" />
+<link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/favicon/favicon-32x32.png" />
+<link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/favicon/favicon-16x16.png" />
+<link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/favicon/android-chrome-192x192.png" />
+<link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="/favicon/android-chrome-512x512.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script><script type="module">
   import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true });
 </script>
@@ -7437,7 +7508,7 @@ main {
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="reveal">
-<div class="footer" style="padding: 4px; font-size: 22px;">Data Morph: A Cautionary Tale of Summary Statistics &ndash; Stefanie Molin
+<div class="footer" style="padding: 4px; font-size: 22px;">Data Morph: A Cautionary Tale of Summary Statistics | Stefanie Molin
     <div style="float: right; margin-top: -18px;">
         <a href="https://github.com/stefmolin/data-morph"
             style="z-index: 1;" target="_blank" rel="noopener noreferrer">
@@ -8306,29 +8377,27 @@ main {
 <div style="display: flex; justify-content: flex-start; align-items: center;">
 <i class="fa fa-globe fa-2x fa-fw" style="padding-right: 4px"></i>
 <a href="https://stefaniemolin.com" rel="noopener noreferrer" style="font-size: 2em;">
-          stefaniemolin.com
+        stefaniemolin.com
       </a>
-    </div>
+</div>
 <div style="display: flex; justify-content: flex-start; align-items: center;">
 <i class="fab fa-github fa-2x fa-fw" style="padding-right: 4px"></i>
 <a href="https://github.com/stefmolin" rel="noopener noreferrer" style="font-size: 2em;" target="_blank">
-        github.com/stefmolin
-      </a>
-    </div>
-
-    <div style="display: flex; justify-content: flex-start; align-items: center;">
+      github.com/stefmolin
+    </a>
+</div>
+<div style="display: flex; justify-content: flex-start; align-items: center;">
 <i class="fab fa-twitter fa-2x fa-fw" style="padding-right: 4px"></i>
 <a href="https://twitter.com/StefanieMolin" rel="noopener noreferrer" style="font-size: 2em;" target="_blank">
-        twitter.com/StefanieMolin
-        </a>
-      </div>
-
+      twitter.com/StefanieMolin
+    </a>
+</div>
 <div style="display: flex; justify-content: flex-start; align-items: center;">
 <i class="fab fa-linkedin-in fa-2x fa-fw" style="padding-right: 4px"></i>
 <a href="https://linkedin.com/in/stefanie-molin" rel="noopener noreferrer" style="font-size: 2em;" target="_blank">
-         linkedin.com/in/stefanie-molin
-        </a>
-      </div>
+      linkedin.com/in/stefanie-molin
+    </a>
+</div>
 </div>
 </div>
 </div>

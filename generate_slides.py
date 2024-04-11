@@ -1,6 +1,7 @@
 """Generate media for slides (requires Python >= 3.10)."""
 
 import glob
+import inspect
 import re
 from pathlib import Path
 
@@ -21,6 +22,95 @@ from scipy.stats import moment
 SLIDES_DIR = Path(__file__).parent
 DATA_DIR = SLIDES_DIR / "data"
 MEDIA_DIR = SLIDES_DIR / "media"
+
+SLIDES_REPO = "data-morph-talk"
+TALK_TITLE = "Data Morph: A Cautionary Tale of Summary Statistics"
+TALK_DESCRIPTION = (
+    "Relying solely on simple summary statistics like the mean, median, or standard "
+    "deviation is not enough to describe complex data. Come and see why this is the case "
+    "and learn what it takes to translate research into an open-source library."
+)
+GA_TAG = """
+    <!-- Google tag (gtag.js) -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-25389D1SR4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+        dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-25389D1SR4");
+    </script>
+"""
+
+HEAD_TAG_CONTENTS = inspect.cleandoc(
+    f"""
+    {GA_TAG}
+    <meta name="theme-color" content="#000" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@StefanieMolin" />
+    <meta name="twitter:creator" content="@StefanieMolin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Stefanie Molin" />
+    <meta name="author" content="Stefanie Molin" />
+    <meta name="referrer" content="origin" />
+    <meta
+        name="keywords"
+        content="technology, workshop, data visualization, Python, data science, slides" />
+    <meta
+        property="og:url"
+        content="https://stefaniemolin.com/{SLIDES_REPO}/" />
+    <meta name="robots" content="index,follow" />
+    <meta
+        name="description"
+        content="{TALK_DESCRIPTION}" />
+    <meta
+    property="og:title"
+    content="{TALK_TITLE} slides | Stefanie Molin" />
+    <meta
+    property="og:description"
+    content="{TALK_DESCRIPTION}" />
+    <meta
+        property="og:image"
+        content="https://stefaniemolin.com/assets/articles/data-science/introducing-data-morph/panda-to-star.gif" />
+    <meta
+        property="og:image:alt"
+        content="{TALK_TITLE} slides" />
+    <meta property="og:image:width" content="774" />
+    <meta property="og:image:height" content="379" />
+
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicon/apple-touch-icon.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon/favicon-32x32.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon/favicon-16x16.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="/favicon/android-chrome-192x192.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="/favicon/android-chrome-512x512.png" />
+"""
+)
 
 
 def get_data():
@@ -514,7 +604,7 @@ def compile_slides(title):
                 rf'\1\n<div class="footer" style="padding: 4px; font-size: 22px;">{title}{badges}</div>\n{footer}',
                 re.sub(
                     "(<title>).*(</title>)",
-                    rf'\1{title}\2\n<link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico">\n',
+                    rf"\1{title}\2\n{HEAD_TAG_CONTENTS}\n",
                     output,
                 ),
             )
@@ -543,9 +633,7 @@ def main():
 
         anscombes_quartet()
 
-    compile_slides(
-        title="Data Morph: A Cautionary Tale of Summary Statistics &ndash; Stefanie Molin"
-    )
+    compile_slides(title=f"{TALK_TITLE} | Stefanie Molin")
 
 
 if __name__ == "__main__":
