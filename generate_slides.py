@@ -46,9 +46,12 @@ GA_TAG = """
     </script>
 """
 CSS = """
-    <style>
+    <style type="text/css">
         .reveal h4 {
             font-size: 1.25em !important;
+        }
+        .qr-code {
+            min-width: 225px;
         }
     </style>
 """
@@ -116,6 +119,11 @@ HEAD_TAG_CONTENTS = inspect.cleandoc(
         type="image/png"
         sizes="512x512"
         href="/favicon/android-chrome-512x512.png" />
+    <!-- Font Awesome icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css"
+      rel="stylesheet"
+      type="text/css" />
     {CSS}
 """
 )
