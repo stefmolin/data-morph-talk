@@ -574,6 +574,11 @@ def compile_slides(title):
 
     badges = """
     <div style="float: right; margin-top: -18px;">
+        <a href="https://stefaniemolin.com/say-thanks/"
+          style="z-index: 1;" target="_blank">
+          <img alt="Ways to show appreciation for this content."
+                style="max-width: 100%; margin: 20px 0 0 0;" src="https://img.shields.io/badge/liked_this%3F-say_thanks-gray?logoColor=yellow&color=blue">
+        </a>
         <a href="https://github.com/stefmolin/data-morph"
             style="z-index: 1;" target="_blank" rel="noopener noreferrer">
             <img src="https://img.shields.io/badge/view-repo-black?logo=github"
@@ -601,7 +606,7 @@ def compile_slides(title):
         file.write(
             re.sub(
                 '(<div class="reveal">)',
-                rf'\1\n<div class="footer" style="padding: 4px; font-size: 22px;">{title}{badges}</div>\n{footer}',
+                rf'\1\n<div class="footer" style="padding: 4px; font-size: 22px;">{title.replace("|", "–")}{badges}</div>\n{footer}',
                 re.sub(
                     "(<title>).*(</title>)",
                     rf"\1{title}\2\n{HEAD_TAG_CONTENTS}\n",
