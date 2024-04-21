@@ -45,6 +45,13 @@ GA_TAG = """
         gtag("config", "G-25389D1SR4");
     </script>
 """
+CSS = """
+    <style>
+        .reveal h4 {
+            font-size: 1.25em !important;
+        }
+    </style>
+"""
 
 HEAD_TAG_CONTENTS = inspect.cleandoc(
     f"""
@@ -109,6 +116,7 @@ HEAD_TAG_CONTENTS = inspect.cleandoc(
         type="image/png"
         sizes="512x512"
         href="/favicon/android-chrome-512x512.png" />
+    {CSS}
 """
 )
 
