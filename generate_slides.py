@@ -605,6 +605,9 @@ def compile_slides(title):
             <img src="https://img.shields.io/badge/view-docs-orange?logo=github"
                 alt="docs" style="max-width: 100%; margin: 20px 0 0 0;">
         </a>
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="z-index: 1;" target="_blank" rel="noopener noreferrer">
+            <img alt="CC BY-NC-SA 4.0" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" style="max-width: 100%; margin: 20px 0 0 0;">
+        </a>
     </div>
     """
 
