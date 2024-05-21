@@ -95,6 +95,9 @@ content="Relying solely on simple summary statistics like the mean, median, or s
     .qr-code {
         min-width: 225px;
     }
+    .jp-InputPrompt.jp-InputArea-prompt {
+        display: none;
+    }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
@@ -5071,7 +5074,7 @@ form{
   .bp3-running-text table th, table.bp3-html-table th{
     color:#182026;
     font-weight:600; }
-
+  
   .bp3-running-text table td,
   table.bp3-html-table td{
     color:#182026; }
@@ -15298,7 +15301,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Bio">Bio<a class="anchor-link" href="#Bio">&#182;</a></h2><ul>
 <li>👩🏻‍💻 Software engineer at Bloomberg in New York City</li>
-<li>✨ Co-chair and founding member of Bloomberg's Data Science Community</li>
+<li>✨ Founding member of Bloomberg's Data Science Community</li>
 <li>✍🏼 Author of <em><a href="https://www.amazon.com/Hands-Data-Analysis-Pandas-visualization-dp-1800563450/dp/1800563450/">Hands-On Data Analysis with Pandas</a></em> (currently in its second edition; translated into Korean and Chinese)</li>
 <li>🎓 BS in operations research from Columbia University</li>
 <li>🎓 MS in computer science (ML specialization) from Georgia Tech</li>
@@ -15456,14 +15459,104 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div></section><section >
-<div id="cell-id=1762d894-f213-4307-b204-de513b481214" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=8a64091e-4c1f-4461-a96b-8257fc4a41bd" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Despite all of this, there's still (and always will be) a tendency to forget that summary statistics aren't enough.</p>
+<h3 id="Visualization-is-an-essential-part-of-any-data-analysis.">Visualization is an essential part of any data analysis.<a class="anchor-link" href="#Visualization-is-an-essential-part-of-any-data-analysis.">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div></section><section >
+<div id="cell-id=a5337df7-911a-4c71-a9af-c50aa925869a" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In their 2020 paper, <em><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w">A hypothesis is a liability</a></em>, researchers Yanai and Lercher argue that <strong>simply approaching a dataset with a hypothesis may limit the thoroughness to which the data is explored</strong>.</p>
 
+</div>
+</div>
+</div>
+</div><div class="fragment" >
+<div id="cell-id=0785e8a0" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's take a look at their experiment.</p>
+
+</div>
+</div>
+</div>
+</div></div></section><section >
+<div id="cell-id=f75bb3b4" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="The-experiment">The experiment<a class="anchor-link" href="#The-experiment">&#182;</a></h4><p>Students in a statistical data analysis course were split into two groups. One group was given the open-ended task of exploring the data, while the other group was instructed to test the following hypotheses:</p>
+<ol>
+<li>There is a difference in the mean number of steps between women and men.</li>
+<li>The correlation coefficient between steps and BMI is negative for women.</li>
+<li>The correlation coefficient between steps and BMI is positive for men.</li>
+</ol>
+<div style="text-align: right;">
+    <small>
+        <a href="https://doi.org/10.1101/2020.07.30.228916" rel="noopener noreferrer" target="_blank">
+            (Yanai & Lercher, 2020)
+        </a>
+    </small>
+</div>
+
+</div>
+</div>
+</div>
+</div></section><section >
+<div id="cell-id=19b25684-7a70-4a3a-af37-28b723d0052d" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Here's what that dataset looked like:</p>
+<div style="text-align: center;">
+    <img
+        width=450
+        alt="Figure 1 from 'A hypothesis is a liability' by Itai Yanai & Martin Lercher"
+        src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs13059-020-02133-w/MediaObjects/13059_2020_2133_Fig1_HTML.png?as=webp" />
+</div>
+<div style="text-align: center; margin-top: -10px;">
+    <small>Figure 1 from <em><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w" target="_blank" rel="noopener noreferrer">A hypothesis is a liability</a></em> by Itai Yanai & Martin Lercher (<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>).</small>
+</div>
+
+</div>
+</div>
+</div>
+</div></section><section >
+<div id="cell-id=56b2cf0d-b0d1-4c83-956a-e79cf1e356b8" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="How-can-we-encourage-students-and-practitioners-alike-to-be-more-thorough-in-their-analyses?">How can we encourage students and practitioners alike to be more thorough in their analyses?<a class="anchor-link" href="#How-can-we-encourage-students-and-practitioners-alike-to-be-more-thorough-in-their-analyses?">&#182;</a></h4>
+</div>
+</div>
+</div>
+</div></section><section >
+<div id="cell-id=4da4358b-7551-43a1-91e9-ee54fb624c53" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Create-more-memorable-teaching-aids">Create more memorable teaching aids<a class="anchor-link" href="#Create-more-memorable-teaching-aids">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -15522,7 +15615,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="What's-so-special-about-the-Datasaurus?">What's so special about the Datasaurus?<a class="anchor-link" href="#What's-so-special-about-the-Datasaurus?">&#182;</a></h2>
+<h3 id="What's-so-special-about-the-Datasaurus?">What's so special about the Datasaurus?<a class="anchor-link" href="#What's-so-special-about-the-Datasaurus?">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -15533,7 +15626,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="NOTHING!">NOTHING!<a class="anchor-link" href="#NOTHING!">&#182;</a></h3>
+<h4 id="NOTHING!">NOTHING!<a class="anchor-link" href="#NOTHING!">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -16155,6 +16248,23 @@ div.jp-OutputPrompt {
 <li>repo: <a href="https://github.com/stefmolin/data-morph">github.com/stefmolin/data-morph</a></li>
 </ul>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+</div></section></section><section ><section >
+<div id="cell-id=98b28860" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><ul>
+<li>Anscombe, F.J. (1973). Graphs in Statistical Analysis. <em>The American Statistician 27</em>, 1, 17–21. <a href="https://www.tandfonline.com/doi/abs/10.1080/00031305.1973.10478966">https://www.tandfonline.com/doi/abs/10.1080/00031305.1973.10478966</a></li>
+<li>Matejka, J., Fitzmaurice, G. (2017). Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing. In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems (CHI '17). Association for Computing Machinery, New York, NY, USA, 1290–1294. <a href="https://doi.org/10.1145/3025453.3025912">https://doi.org/10.1145/3025453.3025912</a></li>
+<li>Yanai, I., Lercher, M. (2020). A hypothesis is a liability. <em>Genome Biol 21</em>, 231. <a href="https://doi.org/10.1186/s13059-020-02133-w">https://doi.org/10.1186/s13059-020-02133-w</a></li>
+<li>Yanai, I, Lercher, M. (2020). Selective attention in hypothesis-driven data analysis. BioRxiv. <a href="https://doi.org/10.1101/2020.07.30.228916">https://doi.org/10.1101/2020.07.30.228916</a></li>
 </ul>
 
 </div>
