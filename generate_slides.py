@@ -53,6 +53,9 @@ CSS = """
         .qr-code {
             min-width: 225px;
         }
+        .jp-InputPrompt.jp-InputArea-prompt {
+            display: none;
+        }
     </style>
 """
 
