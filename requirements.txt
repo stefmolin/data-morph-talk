@@ -1,8 +1,6 @@
 # Python>=3.10
 git+https://github.com/stefmolin/data-morph.git
-jupyterlab
 matplotlib
-nbconvert
 numpy
 pandas
 pylint

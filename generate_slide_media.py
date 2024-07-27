@@ -1,12 +1,9 @@
 """Generate media for slides (requires Python >= 3.10)."""
 
 import glob
-import inspect
-import re
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import nbformat
 import numpy as np
 import pandas as pd
 import pytweening
@@ -16,120 +13,11 @@ from data_morph.plotting.style import style_context
 from data_morph.shapes.factory import ShapeFactory
 from matplotlib import ticker
 from matplotlib.animation import FuncAnimation
-from nbconvert import exporters
 from scipy.stats import moment
 
 SLIDES_DIR = Path(__file__).parent
 DATA_DIR = SLIDES_DIR / "data"
 MEDIA_DIR = SLIDES_DIR / "media"
-
-SLIDES_REPO = "data-morph-talk"
-TALK_TITLE = "Data Morph: A Cautionary Tale of Summary Statistics"
-TALK_DESCRIPTION = (
-    "Relying solely on simple summary statistics like the mean, median, or standard "
-    "deviation is not enough to describe complex data. Come and see why this is the case "
-    "and learn what it takes to translate research into an open-source library."
-)
-GA_TAG = """
-    <!-- Google tag (gtag.js) -->
-    <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-25389D1SR4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-        dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-25389D1SR4");
-    </script>
-"""
-CSS = """
-    <style type="text/css">
-        .reveal h4 {
-            font-size: 1.25em !important;
-        }
-        .qr-code {
-            min-width: 225px;
-        }
-        .jp-InputPrompt.jp-InputArea-prompt {
-            display: none;
-        }
-    </style>
-"""
-
-HEAD_TAG_CONTENTS = inspect.cleandoc(
-    f"""
-    {GA_TAG}
-    <meta name="theme-color" content="#000" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@StefanieMolin" />
-    <meta name="twitter:creator" content="@StefanieMolin" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="Stefanie Molin" />
-    <meta name="author" content="Stefanie Molin" />
-    <meta name="referrer" content="origin" />
-    <meta
-        name="keywords"
-        content="technology, workshop, data visualization, Python, data science, slides" />
-    <meta
-        property="og:url"
-        content="https://stefaniemolin.com/{SLIDES_REPO}/" />
-    <meta name="robots" content="index,follow" />
-    <meta
-        name="description"
-        content="{TALK_DESCRIPTION}" />
-    <meta
-    property="og:title"
-    content="{TALK_TITLE} slides | Stefanie Molin" />
-    <meta
-    property="og:description"
-    content="{TALK_DESCRIPTION}" />
-    <meta
-        property="og:image"
-        content="https://stefaniemolin.com/assets/articles/data-science/introducing-data-morph/panda-to-star.gif" />
-    <meta
-        property="og:image:alt"
-        content="{TALK_TITLE} slides" />
-    <meta property="og:image:width" content="774" />
-    <meta property="og:image:height" content="379" />
-
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico">
-    <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon/apple-touch-icon.png" />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon/favicon-32x32.png" />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon/favicon-16x16.png" />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="192x192"
-        href="/favicon/android-chrome-192x192.png" />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="/favicon/android-chrome-512x512.png" />
-    <!-- Font Awesome icons -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css"
-      rel="stylesheet"
-      type="text/css" />
-    {CSS}
-"""
-)
 
 
 def get_data():
@@ -584,62 +472,8 @@ def generate_simulated_annealing_animation():
         Path(filepath).unlink()
 
 
-def compile_slides(title):
-    """Compile the slides."""
-    slides_notebook = nbformat.read(
-        SLIDES_DIR / "slides.ipynb", as_version=nbformat.NO_CONVERT
-    )
-    output, _ = exporters.export(exporters.SlidesExporter, slides_notebook)
-
-    badges = """
-    <div style="float: right; margin-top: -18px;">
-        <a href="https://stefaniemolin.com/say-thanks/"
-          style="z-index: 1;" target="_blank">
-          <img alt="Ways to show appreciation for this content."
-                style="max-width: 100%; margin: 20px 0 0 0;" src="https://img.shields.io/badge/liked_this%3F-say_thanks-gray?logoColor=yellow&color=blue">
-        </a>
-        <a href="https://github.com/stefmolin/data-morph"
-            style="z-index: 1;" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/badge/view-repo-black?logo=github"
-                alt="repo" style="max-width: 100%; margin: 20px 0 0 0;">
-        </a>
-        <a href="https://stefaniemolin.com/data-morph/stable/index.html"
-            style="z-index: 1;" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/badge/view-docs-orange?logo=github"
-                alt="docs" style="max-width: 100%; margin: 20px 0 0 0;">
-        </a>
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="z-index: 1;" target="_blank" rel="noopener noreferrer">
-            <img alt="CC BY-NC-SA 4.0" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" style="max-width: 100%; margin: 20px 0 0 0;">
-        </a>
-    </div>
-    """
-
-    # footer = """
-    # <aside style="display: block; position: absolute; left: 10px; bottom: 0px; font-size: 0.5em; width: 100%;">
-    #     <h4 style="text-align: left;"><a href="https://tinyurl.com/data-morph-docs"
-    #         style="z-index: 1;" target="_blank" rel="noopener noreferrer">
-    #         tinyurl.com/data-morph-docs
-    #     </a></h4>
-    # </aside>
-    # """
-    footer = ""
-
-    with open(SLIDES_DIR / "index.html", "w") as file:
-        file.write(
-            re.sub(
-                '(<div class="reveal">)',
-                rf'\1\n<div class="footer" style="padding: 4px; font-size: 22px;">{title.replace("|", "–")}{badges}</div>\n{footer}',
-                re.sub(
-                    "(<title>).*(</title>)",
-                    rf"\1{title}\2\n{HEAD_TAG_CONTENTS}\n",
-                    output,
-                ),
-            )
-        )
-
-
 def main():
-    """Generate all media and compile the slides."""
+    """Generate all media for the slides."""
     datasets = get_data()
 
     with style_context():
@@ -659,8 +493,6 @@ def main():
         generate_simulated_annealing_animation()
 
         anscombes_quartet()
-
-    compile_slides(title=f"{TALK_TITLE} | Stefanie Molin")
 
 
 if __name__ == "__main__":
