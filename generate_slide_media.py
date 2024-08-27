@@ -64,6 +64,7 @@ def generate_stats_static(datasets):
             f'X mean : {stats.loc["mean", "x"]:>+6}',
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
@@ -71,6 +72,7 @@ def generate_stats_static(datasets):
             f'Y mean : {stats.loc["mean", "y"]:>+6}',
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
@@ -78,6 +80,7 @@ def generate_stats_static(datasets):
             f'X stdev: {stats.loc["std", "x"]:>+6}',
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
@@ -85,6 +88,7 @@ def generate_stats_static(datasets):
             f'Y stdev: {stats.loc["std", "y"]:>+6}',
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
@@ -92,101 +96,53 @@ def generate_stats_static(datasets):
             f'Corr.  : {np.trunc(dataset.df.corr().loc["x", "y"] * 100) / 100:>+6.2f}',
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
     fig.tight_layout(rect=(0, -0.14, 1, 1))
     fig.savefig(MEDIA_DIR / "stats.png", facecolor="white", bbox_inches="tight")
     plt.close(fig)
 
 
-def generate_stats_animation(datasets):
-    """Generate the summary statistics animation."""
-
-    def draw(frame):
-        for ax, dataset, stat in zip(axs, datasets, stats):
-            match frame:
-                case 0:
-                    dataset.plot(ax=ax, show_bounds=False, title=None)
-                case 1:
-                    stat[frame - 1].set_text(
-                        f"X mean : {truncate(dataset.df.x.mean()):>+6}",
-                    )
-                case 2:
-                    stat[frame - 1].set_text(
-                        f"Y mean : {truncate(dataset.df.y.mean()):>+6}",
-                    )
-                case 3:
-                    stat[frame - 1].set_text(
-                        f"X stdev: {truncate(dataset.df.x.std()):>+6}",
-                    )
-                case 4:
-                    stat[frame - 1].set_text(
-                        f"Y stdev: {truncate(dataset.df.y.std()):>+6}",
-                    )
-                case 5:
-                    stat[frame - 1].set_text(
-                        f'Corr.  : {truncate(dataset.df.corr().loc["x", "y"]):>+6.2f}',
-                    )
-
+def generate_moments_static(datasets):
+    """Generate datasets with the moments."""
     fig, axs = plt.subplots(1, 3, figsize=(9, 4))
-    stats = [
-        [
-            ax.text(0.5, y, " ", transform=ax.transAxes, ha="center")
-            for y in np.linspace(-0.2, -0.6, num=5)
-        ]
-        for ax in axs
-    ]
-    fig.tight_layout(rect=(0, -0.14, 1, 1))
-    ani = FuncAnimation(
-        fig,
-        draw,
-        frames=range(1, 6),
-        init_func=lambda: draw(0),
-    )
-    ani.save(MEDIA_DIR / "stats.gif", writer="pillow", fps=0.5)
-    plt.close(fig)
+    for ax, dataset in zip(axs, datasets):
+        dataset.plot(ax=ax, show_bounds=False, title=None)
+        ax.text(
+            0.5,
+            -0.2,
+            f"2nd moment in X: {np.trunc(moment(dataset.df.x, moment=2)):>+6,.0f}",
+            transform=ax.transAxes,
+            ha="center",
+            va="center",
+        )
+        ax.text(
+            0.5,
+            -0.3,
+            f"2nd moment in Y: {np.trunc(moment(dataset.df.y, moment=2)):>+6,.0f}",
+            transform=ax.transAxes,
+            ha="center",
+            va="center",
+        )
+        ax.text(
+            0.5,
+            -0.4,
+            f"3rd moment in X: {np.trunc(moment(dataset.df.x, moment=3)):>+6,.0f}",
+            transform=ax.transAxes,
+            ha="center",
+            va="center",
+        )
+        ax.text(
+            0.5,
+            -0.5,
+            f"3rd moment in Y: {np.trunc(moment(dataset.df.y, moment=3)):>+6,.0f}",
+            transform=ax.transAxes,
+            ha="center",
+            va="center",
+        )
 
-
-def generate_moments_animation(datasets):
-    """Generate animation of the moments."""
-
-    def draw(frame):
-        for ax, dataset, stat in zip(axs, datasets, stats):
-            match frame:
-                case 0:
-                    dataset.plot(ax=ax, show_bounds=False, title=None)
-                case 1:
-                    stat[frame - 1].set_text(
-                        f"2nd moment in X: {np.trunc(moment(dataset.df.x, moment=2)):>+6.0f}",
-                    )
-                case 2:
-                    stat[frame - 1].set_text(
-                        f"2nd moment in Y: {np.trunc(moment(dataset.df.y, moment=2)):>+6.0f}",
-                    )
-                case 3:
-                    stat[frame - 1].set_text(
-                        f"3rd moment in X: {np.trunc(moment(dataset.df.x, moment=3)):>+6.0f}",
-                    )
-                case 4:
-                    stat[frame - 1].set_text(
-                        f"3rd moment in Y: {np.trunc(moment(dataset.df.y, moment=3)):>+6.0f}",
-                    )
-
-    fig, axs = plt.subplots(1, 3, figsize=(9, 4))
-    stats = [
-        [
-            ax.text(0.5, y, " ", transform=ax.transAxes, ha="center")
-            for y in np.linspace(-0.25, -0.55, num=4)
-        ]
-        for ax in axs
-    ]
     fig.tight_layout(rect=(0, -0.1, 1, 1))
-    ani = FuncAnimation(
-        fig,
-        draw,
-        frames=range(1, 5),
-        init_func=lambda: draw(0),
-    )
-    ani.save(MEDIA_DIR / "moments.gif", writer="pillow", fps=0.5)
+    fig.savefig(MEDIA_DIR / "moments.png", facecolor="white", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -211,31 +167,35 @@ def generate_marginals_plot(datasets):
             marginal_ax.yaxis.set_visible(False)
         ax.text(
             0.66,
-            -0.3,
+            -0.25,
             f"X skewness: {moment(dataset.df.x, moment=3):>+9,.2f}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.66,
-            -0.4,
+            -0.36,
             f"Y skewness: {moment(dataset.df.y, moment=3):>+9,.2f}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.66,
-            -0.5,
+            -0.47,
             f"X kurtosis: {moment(dataset.df.x, moment=4):.4g}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.66,
-            -0.6,
+            -0.58,
             f"Y kurtosis: {moment(dataset.df.y, moment=4):.4g}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
     fig.tight_layout(rect=(0, -0.2, 1, 1))
     fig.savefig(
@@ -272,34 +232,43 @@ def anscombes_quartet():
         # annotate the summary statistics
         ax.text(
             0.5,
-            -0.35,
+            -0.4,
             f"X mean : {x.mean():>+6.2f}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
-            -0.5,
+            -0.6,
             f"Y mean : {y.mean():>+6.2f}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
         ax.text(
             0.5,
-            -0.65,
+            -0.8,
             f"X stdev: {x.std():>+6.2f}",
             transform=ax.transAxes,
             ha="center",
-        )
-        ax.text(
-            0.5, -0.8, f"Y stdev: {y.std():>+6.2f}", transform=ax.transAxes, ha="center"
+            va="center",
         )
         ax.text(
             0.5,
-            -0.95,
+            -1,
+            f"Y stdev: {y.std():>+6.2f}",
+            transform=ax.transAxes,
+            ha="center",
+            va="center",
+        )
+        ax.text(
+            0.5,
+            -1.2,
             f"Corr.  : {np.corrcoef(x, y)[0, 1]:>+6.2f}",
             transform=ax.transAxes,
             ha="center",
+            va="center",
         )
 
     # give the plots a title
@@ -479,8 +448,7 @@ def main():
     with style_context():
         generate_example_datasets_plot(datasets)
         generate_stats_static(datasets)
-        generate_stats_animation(datasets)
-        generate_moments_animation(datasets)
+        generate_moments_static(datasets)
         generate_marginals_plot(datasets)
 
         generate_bounds_example(datasets[0])
