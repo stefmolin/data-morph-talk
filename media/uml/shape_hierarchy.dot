@@ -1,80 +1,32 @@
 digraph "classes_data_morph" {
 rankdir=BT
 charset="utf-8"
-
-"data_morph.shapes.bases.shape.Shape" [color="black", fontcolor="black", label=<{<I>Shape</I>|<br ALIGN="LEFT"/>|<I>distance</I>(x: Number, y: Number): float<br ALIGN="LEFT"/><I>plot</I>(ax: Axes): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-
-
-"data_morph.shapes.circles.Rings" [color="black", fontcolor="black", label=<{Rings|circles : list[Circle]<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"data_morph.shapes.circles.Rings" -> "data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
-"data_morph.shapes.circles.Rings" -> "data_morph.shapes.circles.Circle" [arrowhead="diamond", arrowtail="none"];  # this shows composition
-
-"data_morph.shapes.circles.Circle" [color="black", fontcolor="black", label=<{Circle|cx : Number<br ALIGN="LEFT"/>cy : Number<br ALIGN="LEFT"/>r : Number<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"data_morph.shapes.circles.Circle" -> "data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
-
-
-"data_morph.shapes.bases.line_collection.LineCollection" [color="black", fontcolor="black", label=<{LineCollection|lines : tuple<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"data_morph.shapes.bases.line_collection.LineCollection" -> "data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.polygons.Diamond" [color="black", fontcolor="black", label=<{Diamond|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-"data_morph.shapes.polygons.Diamond" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.HighLines" [color="black", fontcolor="black", label=<{HighLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.HighLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.HorizontalLines" [color="black", fontcolor="black", label=<{HorizontalLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.HorizontalLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.polygons.Rectangle" [color="black", fontcolor="black", label=<{Rectangle|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.polygons.Rectangle" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.SlantDownLines" [color="black", fontcolor="black", label=<{SlantDownLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.SlantDownLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.lines.SlantUpLines" [color="black", fontcolor="black", label=<{SlantUpLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-"data_morph.shapes.lines.SlantUpLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.polygons.Star" [color="black", fontcolor="black", label=<{Star|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-"data_morph.shapes.polygons.Star" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.VerticalLines" [color="black", fontcolor="black", label=<{VerticalLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.VerticalLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.WideLines" [color="black", fontcolor="black", label=<{WideLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.WideLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.lines.XLines" [color="black", fontcolor="black", label=<{XLines|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.lines.XLines" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.lines.others" [color="black", fontcolor="black", label=<...>, shape="square", style="solid"];
-"data_morph.shapes.lines.others" -> "data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
-
-
-"data_morph.shapes.bases.point_collection.PointCollection" [color="black", fontcolor="black", label=<{PointCollection|points : ndarray<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"data_morph.shapes.bases.point_collection.PointCollection" -> "data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.points.DotsGrid" [color="black", fontcolor="black", label=<{DotsGrid|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.points.DotsGrid" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.points.DownParabola" [color="black", fontcolor="black", label=<{DownParabola|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.points.DownParabola" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.points.Heart" [color="black", fontcolor="black", label=<{Heart|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-"data_morph.shapes.points.Heart" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.points.LeftParabola" [color="black", fontcolor="black", label=<{LeftParabola|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.points.LeftParabola" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.points.RightParabola" [color="black", fontcolor="black", label=<{RightParabola|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.points.RightParabola" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.points.Scatter" [color="black", fontcolor="black", label=<{Scatter|<br ALIGN="LEFT"/>|distance(x: Number, y: Number): int<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"data_morph.shapes.points.Scatter" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-#"data_morph.shapes.points.UpParabola" [color="black", fontcolor="black", label=<{UpParabola|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-#"data_morph.shapes.points.UpParabola" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
-"data_morph.shapes.points.others" [color="black", fontcolor="black", label=<...>, shape="square", style="solid"];
-"data_morph.shapes.points.others" -> "data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
-
+"src.data_morph.shapes.circles.placeholder" [color="black", fontcolor="black", label=<{...}>, shape="record", style="solid"];
+"src.data_morph.shapes.circles.Circle" [color="black", fontcolor="black", label=<{Circle|center : ndarray<br ALIGN="LEFT"/>radius : Number<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes \| None): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"src.data_morph.shapes.points.club.Club" [color="black", fontcolor="black", label=<{Club|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.lines.diamond.Diamond" [color="black", fontcolor="black", label=<{Diamond|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.points.heart.Heart" [color="black", fontcolor="black", label=<{Heart|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.bases.line_collection.LineCollection" [color="black", fontcolor="black", label=<{LineCollection|lines : ndarray<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes \| None): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"src.data_morph.shapes.bases.point_collection.PointCollection" [color="black", fontcolor="black", label=<{PointCollection|points : ndarray<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes \| None): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"src.data_morph.shapes.circles.Rings" [color="black", fontcolor="black", label=<{Rings|circles : list[Circle]<br ALIGN="LEFT"/>|distance(x: Number, y: Number): float<br ALIGN="LEFT"/>plot(ax: Axes \| None): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"src.data_morph.shapes.bases.shape.Shape" [color="black", fontcolor="black", label=<{Shape|name : str \| None<br ALIGN="LEFT"/>|<I>distance</I>(x: Number, y: Number): float<br ALIGN="LEFT"/>get_name(): str<br ALIGN="LEFT"/><I>plot</I>(ax: Axes \| None): Axes<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"src.data_morph.shapes.lines.slant_up.SlantUpLines" [color="black", fontcolor="black", label=<{SlantUpLines|name : str<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.points.spade.Spade" [color="black", fontcolor="black", label=<{Spade|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.lines.star.Star" [color="black", fontcolor="black", label=<{Star|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"src.data_morph.shapes.lines.placeholder" [color="black", fontcolor="black", label=<{...}>, shape="record", style="solid"];
+"src.data_morph.shapes.points.placeholder" [color="black", fontcolor="black", label=<{...}>, shape="record", style="solid"];
+"src.data_morph.shapes.bases.line_collection.LineCollection" -> "src.data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.bases.point_collection.PointCollection" -> "src.data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.circles.Circle" -> "src.data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.circles.Rings" -> "src.data_morph.shapes.bases.shape.Shape" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.lines.diamond.Diamond" -> "src.data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.lines.slant_up.SlantUpLines" -> "src.data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.lines.star.Star" -> "src.data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.lines.placeholder" -> "src.data_morph.shapes.bases.line_collection.LineCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.points.club.Club" -> "src.data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.points.heart.Heart" -> "src.data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.points.spade.Spade" -> "src.data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.points.placeholder" -> "src.data_morph.shapes.bases.point_collection.PointCollection" [arrowhead="empty", arrowtail="none"];
+"src.data_morph.shapes.circles.Circle" -> "src.data_morph.shapes.circles.Rings" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="circles", style="solid"];
+"src.data_morph.shapes.circles.placeholder" -> "src.data_morph.shapes.circles.Rings" [arrowhead="empty", arrowtail="none"];
 }
