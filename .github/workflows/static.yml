@@ -36,12 +36,10 @@ jobs:
       - name: Package files
         run: |
           mkdir -p slides/media/uml && \
-            mkdir -p slides/media/snippets && \
             cp index.html slides/ && \
             cp media/*.png slides/media/ && \
             cp media/*.gif slides/media/ && \
-            cp media/uml/*.svg slides/media/uml/ && \
-            cp media/snippets/*.svg slides/media/snippets/;
+            cp media/uml/*.svg slides/media/uml/;
       - name: Upload artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b  # v4.0.0
         with:
