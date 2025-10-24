@@ -398,19 +398,10 @@
             >
           </div>
         </section>
-        <section id="pearson-correlation-coefficient">
-          <p>
-            The Pearson correlation coefficient measures
-            <em>linear</em> correlation, so if we don't visualize our data, then
-            we have another problem: a high correlation (close in absolute value
-            to 1) does not mean the relationship is actually linear. Without a
-            visualization to contextualize the summary statistics, we do not
-            have an accurate understanding of the data.
-          </p>
-        </section>
         <section id="anscombe-quartet">
           <p>
-            For example, all four datasets in
+            The Pearson correlation coefficient measures
+            <em>linear</em> correlation. For example, all four datasets in
             <b>Anscombe's Quartet</b> (constructed in 1973) have strong
             correlations, but only <b>I</b> and <b>III</b> have linear
             relationships:
@@ -430,6 +421,16 @@
               ></small
             >
           </div>
+          <aside class="notes">
+            <p>
+              The Pearson correlation coefficient measures
+              <em>linear</em> correlation, so if we don't visualize our data,
+              then we have another problem: a high correlation (close in
+              absolute value to 1) does not mean the relationship is actually
+              linear. Without a visualization to contextualize the summary
+              statistics, we do not have an accurate understanding of the data.
+            </p>
+          </aside>
         </section>
         <section id="visualization-is-essential">
           <h3 class="center">
@@ -624,7 +625,7 @@
 
           <div class="center">
             <img
-              src="media/Python_to_heart.gif"
+              src="media/Python_to_heart_classic.gif"
               alt="morphing the Python logo into a heart"
             />
           </div>
@@ -647,7 +648,7 @@
           <pre>
             <code data-trim class="language-shell">
               $ python -m pip install data-morph-ai
-              $ data-morph --start-shape Python --target-shape heart
+              $ data-morph --start Python --target heart
             </code>
           </pre>
         </section>
@@ -866,8 +867,9 @@
           <h4>Avoiding local optima</h4>
           <p>
             Sometimes, the algorithm will move a point away from the target
-            shape, while still preserving summary statistics. This helps to
-            avoid getting stuck:
+            shape (increasing the distance, instead of decreasing it), while
+            still preserving summary statistics. This helps to avoid getting
+            stuck:
           </p>
           <div class="center">
             <img
@@ -892,8 +894,9 @@
         </section>
         <section id="temperature">
           <p>
-            The likelihood of doing this decreases over time and is governed by
-            the <b>temperature</b> of the simulated annealing process:
+            The likelihood of moving a point away from the target shape
+            decreases over time and is governed by the <b>temperature</b> of the
+            simulated annealing process:
           </p>
           <div class="center">
             <img
@@ -1056,6 +1059,29 @@
             </li>
           </ul>
         </section>
+        <section id="coming-soon">
+          <h3>Coming soon: marginal plots</h3>
+
+          <div class="center">
+            <img
+              src="media/Python_to_heart_marginals.gif"
+              alt="morphing the Python logo into a heart with marginal distributions"
+            />
+          </div>
+
+          <hr align="left" style="width: 33%; margin-bottom: 5px" />
+          <div class="footnotes">
+            <small class="footnote"
+              >The Python logo is a
+              <a
+                href="https://www.python.org/psf/trademarks/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >trademark of the Python Software Foundation (PSF)</a
+              >, used with permission from the Foundation.</small
+            >
+          </div>
+        </section>
         <section id="lessons-learned">
           <h2 class="center">Lessons learned and challenges faced</h2>
         </section>
@@ -1114,6 +1140,9 @@
             <ul>
               <li>Purging unused variables and functions</li>
               <li>Refactoring a monolithic codebase</li>
+              <li>
+                Figuring out how to apply the algorithm to arbitrary datasets
+              </li>
               <li>
                 Writing a pre-commit hook to validate numpydoc-style docstrings
                 (<a
