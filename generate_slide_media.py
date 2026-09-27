@@ -1,4 +1,4 @@
-"""Generate media for slides (requires Python >= 3.11)."""
+"""Generate media for slides."""
 
 import glob
 from pathlib import Path
@@ -57,7 +57,7 @@ def generate_stats_static(datasets):
     fig, axs = plt.subplots(1, 3, figsize=(9, 4))
     for ax, dataset in zip(axs, datasets):
         dataset.plot(ax=ax, show_bounds=False, title=None)
-        stats = (dataset.df.describe() * 100).astype(int) / 100
+        stats = (dataset.data.describe() * 100).astype(int) / 100
         ax.text(
             0.5,
             -0.2,
@@ -93,7 +93,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.6,
-            f"Corr.  : {np.trunc(dataset.df.corr().loc['x', 'y'] * 100) / 100:>+6.2f}",
+            f"Corr.  : {np.trunc(dataset.data.corr().loc['x', 'y'] * 100) / 100:>+6.2f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -111,7 +111,7 @@ def generate_moments_static(datasets):
         ax.text(
             0.5,
             -0.2,
-            f"2nd moment in X: {np.trunc(moment(dataset.df.x, moment=2)):>+6,.0f}",
+            f"2nd moment in X: {np.trunc(moment(dataset.data.x, moment=2)):>+6,.0f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -119,7 +119,7 @@ def generate_moments_static(datasets):
         ax.text(
             0.5,
             -0.3,
-            f"2nd moment in Y: {np.trunc(moment(dataset.df.y, moment=2)):>+6,.0f}",
+            f"2nd moment in Y: {np.trunc(moment(dataset.data.y, moment=2)):>+6,.0f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -127,7 +127,7 @@ def generate_moments_static(datasets):
         ax.text(
             0.5,
             -0.4,
-            f"3rd moment in X: {np.trunc(moment(dataset.df.x, moment=3)):>+6,.0f}",
+            f"3rd moment in X: {np.trunc(moment(dataset.data.x, moment=3)):>+6,.0f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -135,7 +135,7 @@ def generate_moments_static(datasets):
         ax.text(
             0.5,
             -0.5,
-            f"3rd moment in Y: {np.trunc(moment(dataset.df.y, moment=3)):>+6,.0f}",
+            f"3rd moment in Y: {np.trunc(moment(dataset.data.y, moment=3)):>+6,.0f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -151,12 +151,12 @@ def generate_marginals_plot(datasets):
     fig, axs = plt.subplots(1, 3, figsize=(9, 3.5), sharex=True, sharey=True)
     for ax, dataset in zip(axs, datasets):
         ax.set_aspect(1)
-        ax.scatter(dataset.df.x, dataset.df.y, s=1, color="black")
+        ax.scatter(dataset.data.x, dataset.data.y, s=1, color="black")
         x_hist = ax.inset_axes([0, 1.05, 1, 0.25], sharex=ax)
-        x_hist.hist(dataset.df.x, ec="black", bins=15, color="slategray")
+        x_hist.hist(dataset.data.x, ec="black", bins=15, color="slategray")
         y_hist = ax.inset_axes([1.05, 0, 0.25, 1], sharey=ax)
         y_hist.hist(
-            dataset.df.y,
+            dataset.data.y,
             orientation="horizontal",
             ec="black",
             bins=15,
@@ -168,7 +168,7 @@ def generate_marginals_plot(datasets):
         ax.text(
             0.66,
             -0.25,
-            f"X skewness: {moment(dataset.df.x, moment=3):>+9,.2f}",
+            f"X skewness: {moment(dataset.data.x, moment=3):>+9,.2f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -176,7 +176,7 @@ def generate_marginals_plot(datasets):
         ax.text(
             0.66,
             -0.36,
-            f"Y skewness: {moment(dataset.df.y, moment=3):>+9,.2f}",
+            f"Y skewness: {moment(dataset.data.y, moment=3):>+9,.2f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -184,7 +184,7 @@ def generate_marginals_plot(datasets):
         ax.text(
             0.66,
             -0.47,
-            f"X kurtosis: {moment(dataset.df.x, moment=4):.4g}",
+            f"X kurtosis: {moment(dataset.data.x, moment=4):.4g}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -192,7 +192,7 @@ def generate_marginals_plot(datasets):
         ax.text(
             0.66,
             -0.58,
-            f"Y kurtosis: {moment(dataset.df.y, moment=4):.4g}",
+            f"Y kurtosis: {moment(dataset.data.y, moment=4):.4g}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -290,7 +290,7 @@ def generate_shape_fitting_example():
         dataset = DataLoader.load_dataset(dataset_name)
         factory = ShapeFactory(dataset)
         for ax, shape in zip(plot_row, ["heart", "slant_up", "star"]):
-            ax.scatter(dataset.df.x, dataset.df.y, s=1, color="black", alpha=0.1)
+            ax.scatter(dataset.data.x, dataset.data.y, s=1, color="black", alpha=0.1)
             factory.generate_shape(shape).plot(ax=ax)
     fig.tight_layout()
     fig.savefig(
@@ -323,7 +323,7 @@ def generate_bald_spot_example():
     shape = factory.generate_shape("heart")
 
     for ax, shape_alpha, data_alpha in zip(axs, [1, 0.1], [0.2, 0]):
-        ax.scatter(dataset.df.x, dataset.df.y, s=1, alpha=data_alpha)
+        ax.scatter(dataset.data.x, dataset.data.y, s=1, alpha=data_alpha)
         shape._alpha = shape_alpha
         shape.plot(ax=ax)
     axs[0].set_title("target")
@@ -341,7 +341,7 @@ def generate_scale_example():
     fig, axs = plt.subplots(1, 3, figsize=(9, 3), sharex=True, sharey=True)
     for ax, scale_reduction in zip(axs, [2, 1, 0.5]):
         dataset = DataLoader.load_dataset("dino", scale=scale_reduction)
-        ax.scatter(dataset.df.x, dataset.df.y, s=1, color="black")
+        ax.scatter(dataset.data.x, dataset.data.y, s=1, color="black")
         scale = 1 / scale_reduction
         ax.set_title(f"{scale:{'.1' if scale < 1 else '.0'}f}:1 size")
     fig.tight_layout()
@@ -395,7 +395,7 @@ def generate_simulated_annealing_animation():
     alphas = [0.2, 0.1]
     for ax, alpha in zip(axs, alphas):
         ax.set_aspect(1)
-        ax.scatter(dataset.df.x, dataset.df.y, s=5, color="black", alpha=alpha)
+        ax.scatter(dataset.data.x, dataset.data.y, s=5, color="black", alpha=alpha)
     reframe(axs)
 
     iteration_text = fig.text(0.5, 0.97, "", va="center", ha="center")
@@ -411,7 +411,7 @@ def generate_simulated_annealing_animation():
         previous = (
             pd.read_csv(DATA_DIR / f"Python-to-heart-data-{i:>03}.csv")
             if i
-            else dataset.df
+            else dataset.data
         )
 
         idx = current.compare(previous).dropna().index
