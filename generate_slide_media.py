@@ -1,4 +1,4 @@
-"""Generate media for slides (requires Python >= 3.10)."""
+"""Generate media for slides (requires Python >= 3.11)."""
 
 import glob
 from pathlib import Path
@@ -61,7 +61,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.2,
-            f'X mean : {stats.loc["mean", "x"]:>+6}',
+            f"X mean : {stats.loc['mean', 'x']:>+6}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -69,7 +69,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.3,
-            f'Y mean : {stats.loc["mean", "y"]:>+6}',
+            f"Y mean : {stats.loc['mean', 'y']:>+6}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -77,7 +77,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.4,
-            f'X stdev: {stats.loc["std", "x"]:>+6}',
+            f"X stdev: {stats.loc['std', 'x']:>+6}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -85,7 +85,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.5,
-            f'Y stdev: {stats.loc["std", "y"]:>+6}',
+            f"Y stdev: {stats.loc['std', 'y']:>+6}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -93,7 +93,7 @@ def generate_stats_static(datasets):
         ax.text(
             0.5,
             -0.6,
-            f'Corr.  : {np.trunc(dataset.df.corr().loc["x", "y"] * 100) / 100:>+6.2f}',
+            f"Corr.  : {np.trunc(dataset.df.corr().loc['x', 'y'] * 100) / 100:>+6.2f}",
             transform=ax.transAxes,
             ha="center",
             va="center",
@@ -343,7 +343,7 @@ def generate_scale_example():
         dataset = DataLoader.load_dataset("dino", scale=scale_reduction)
         ax.scatter(dataset.df.x, dataset.df.y, s=1, color="black")
         scale = 1 / scale_reduction
-        ax.set_title(f'{scale:{".1" if scale < 1 else ".0"}f}:1 size')
+        ax.set_title(f"{scale:{'.1' if scale < 1 else '.0'}f}:1 size")
     fig.tight_layout()
     fig.savefig(MEDIA_DIR / "scale.png", facecolor="white", bbox_inches="tight")
     plt.close(fig)
@@ -363,7 +363,7 @@ def generate_easing_example(name, min_value, max_value):
     axs[0].set_ylabel(name)
     fig.tight_layout()
     fig.savefig(
-        MEDIA_DIR / f'{name.replace(" ", "_")}_over_time.png',
+        MEDIA_DIR / f"{name.replace(' ', '_')}_over_time.png",
         facecolor="white",
         bbox_inches="tight",
     )
@@ -407,7 +407,7 @@ def generate_simulated_annealing_animation():
 
         iteration_text.set_text(f"Iteration {i + 1:>2}")
 
-        current = pd.read_csv(DATA_DIR / f"Python-to-heart-data-{i+1:>03}.csv")
+        current = pd.read_csv(DATA_DIR / f"Python-to-heart-data-{i + 1:>03}.csv")
         previous = (
             pd.read_csv(DATA_DIR / f"Python-to-heart-data-{i:>03}.csv")
             if i
