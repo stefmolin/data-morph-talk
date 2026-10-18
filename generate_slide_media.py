@@ -314,8 +314,8 @@ def generate_builtin_listings(dataset):
     plt.close()
 
 
-def generate_bald_spot_example():
-    """Generate example of the "bald spot" limitation."""
+def generate_coverage_gap_example():
+    """Generate example of the coverage gap limitation."""
     dataset = DataLoader.load_dataset("dino")
     factory = ShapeFactory(dataset)
 
@@ -332,7 +332,7 @@ def generate_bald_spot_example():
     axs[1].scatter(actual.x, actual.y, s=5, color="black", alpha=0.9)
     axs[1].set_title("actual")
     fig.tight_layout()
-    fig.savefig(MEDIA_DIR / "bald_spots.png", facecolor="white", bbox_inches="tight")
+    fig.savefig(MEDIA_DIR / "coverage_gaps.png", facecolor="white", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -453,7 +453,7 @@ def main():
 
         generate_bounds_example(datasets[0])
         generate_shape_fitting_example()
-        generate_bald_spot_example()
+        generate_coverage_gap_example()
         generate_scale_example()
         generate_easing_example("maximum movement", 0.3, 1)
         generate_easing_example("temperature", 0, 0.4)
